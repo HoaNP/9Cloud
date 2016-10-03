@@ -1,3 +1,7 @@
+Name: Nguyen Phuong Hoa
+RollNo: SE03457
+Class: CS0901
+
 Hi there! Welcome to this Project!
 
 Have a look at the files, and use the terminal to build them:
@@ -11,7 +15,16 @@ Have a look at the files, and use the terminal to build them:
 3, A list of productions, one per line.  Each production should consist of a symbol name, the metasymbol “->”, and a sequence of zero or more symbol names.  We will test your code with only pure BNF:  no alternation, no Kleene closure.  You may assume that productions with the same left-hand side will be consecutive, and that the start symbol is the left-hand side of the first production. 
 
 * Output consist of:
-1, First Set
+1, First Set:
+i-th nonterminal : first set of this nonterminal
+
+
 2, Follow Set
+i-th nonterminal : follow set of this nonterminal
+
+
 3, Predict Set
+i-th production: predict set of this production
+
+
 4, LL Table
