@@ -1,20 +1,60 @@
-0
-1
-0
-0
-0
-1
-0
-0
-1
-0
-1: -18 -13 -2 -1 
-2: -18 -13 -2 
-3: -18 -13 -2 
-4: -26 -19 -2 
-5: -26 -19 -2 
-6: -23 -22 
-7: -23 -22 
-8: -26 -19 -2 
-9: -25 -24 
-10: -25 -24 
+First Set: 
+program: tok_eof ident rw_read rw_write 
+stmt_list: ident rw_read rw_write 
+stmt: ident rw_read rw_write 
+expr: ident lit_int lparen 
+term: ident lit_int lparen 
+term_tail: op_add op_sub 
+add_op: op_add op_sub 
+factor: ident lit_int lparen 
+fact_tail: op_mul op_div 
+mult_op: op_mul op_div 
+
+
+Follow Set: 
+program: 
+stmt_list: tok_eof 
+stmt: tok_eof ident rw_read rw_write 
+expr: tok_eof ident rw_read rw_write rparen 
+term: tok_eof ident rw_read rw_write op_add op_sub rparen 
+term_tail: tok_eof ident rw_read rw_write rparen 
+add_op: ident lit_int lparen 
+factor: tok_eof ident rw_read rw_write op_add op_sub op_mul op_div rparen 
+fact_tail: tok_eof ident rw_read rw_write op_add op_sub rparen 
+mult_op: ident lit_int lparen 
+
+
+Predict Set: 
+1: tok_eof ident rw_read rw_write 
+2: ident rw_read rw_write 
+3: tok_eof 
+4: ident 
+5: rw_read 
+6: rw_write 
+7: ident lit_int lparen 
+8: op_add op_sub 
+9: tok_eof ident rw_read rw_write rparen 
+10: ident lit_int lparen 
+11: op_mul op_div 
+12: tok_eof ident rw_read rw_write op_add op_sub rparen 
+13: lparen 
+14: ident 
+15: lit_int 
+16: op_add 
+17: op_sub 
+18: op_mul 
+19: op_div 
+
+
+LL Table: 
+          |   tok_eof|     ident|   rw_read|  rw_write|   lit_int|   becomes|    op_add|    op_sub|    op_mul|    op_div|    lparen|    rparen|
+   program|         1|         1|         1|         1|         0|         0|         0|         0|         0|         0|         0|         0|
+ stmt_list|         3|         2|         2|         2|         0|         0|         0|         0|         0|         0|         0|         0|
+      stmt|         0|         4|         5|         6|         0|         0|         0|         0|         0|         0|         0|         0|
+      expr|         0|         7|         0|         0|         7|         0|         0|         0|         0|         0|         7|         0|
+      term|         0|        10|         0|         0|        10|         0|         0|         0|         0|         0|        10|         0|
+ term_tail|         9|         9|         9|         9|         0|         0|         8|         8|         0|         0|         0|         9|
+    add_op|         0|         0|         0|         0|         0|         0|        16|        17|         0|         0|         0|         0|
+    factor|         0|        14|         0|         0|        15|         0|         0|         0|         0|         0|        13|         0|
+ fact_tail|        12|        12|        12|        12|         0|         0|        12|        12|        11|        11|         0|        12|
+   mult_op|         0|         0|         0|         0|         0|         0|         0|         0|        18|        19|         0|         0|
